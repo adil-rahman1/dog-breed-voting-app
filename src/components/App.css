@@ -1,3 +1,43 @@
 html {
     background: #f8f8f8;
 }
+
+.container {
+    display: flex;
+    align-items: flex-end;
+}
+
+.podium__item {
+    width: 200px;
+}
+
+.podium__rank {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 35px;
+    color: #fff;
+}
+
+.podium__breed {
+    text-align: center;
+    padding: 0 0.5rem;
+}
+
+.podium .first {
+    min-height: 300px;
+    background: #ffd700;
+    font-size: xxx-large;
+}
+
+.podium .second {
+    min-height: 200px;
+    background: #a5a9b4;
+    font-size: xxx-large;
+}
+
+.podium .third {
+    min-height: 100px;
+    background: #cd7f32;
+    font-size: xxx-large;
+}
