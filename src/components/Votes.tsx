@@ -1,4 +1,5 @@
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 interface IBreedsToCompare {
     breedOne: string;
@@ -6,16 +7,39 @@ interface IBreedsToCompare {
 }
 
 export function Votes(): JSX.Element {
-    const [breedsToCompare, setBreedToCompare] = useState<IBreedsToCompare>({
+    const [breedsToCompare, setBreedsToCompare] = useState<IBreedsToCompare>({
         breedOne: "",
         breedTwo: "",
     });
 
+    const getAndStoreTwoRandomBreeds = async () => {
+        try {
+            const response = await axios.get(
+                "https://dog.ceo/api/breeds/image/random/2"
+            );
+            const [breedOne, breedTwo] = response.data.message;
+            setBreedsToCompare({ breedOne, breedTwo });
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    useEffect(() => {
+        getAndStoreTwoRandomBreeds();
+    }, []);
+
+    useEffect(() => {
+        console.log("breeds to compare:", breedsToCompare);
+    }, [breedsToCompare]);
+
     return (
         <>
             <h2>Pick your favourite</h2>
-            <div>Image 1</div>
-            <div>Image 2</div>
+            <div>
+                <img src={breedsToCompare.breedOne} alt="" />
+            </div>
+            <div>
+                <img src={breedsToCompare.breedTwo} alt="" />
+            </div>
         </>
     );
 }
