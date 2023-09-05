@@ -37,6 +37,7 @@ export function Votes(): JSX.Element {
         const breedName = extractDogBreedName(votedBreedUrl);
         try {
             await axios.post(`${baseUrl}/breeds/${breedName}`);
+            getAndStoreTwoRandomBreeds();
         } catch (error) {
             console.error(error);
         }
