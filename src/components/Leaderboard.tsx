@@ -13,8 +13,9 @@ import {
     Heading,
     Button,
 } from "@chakra-ui/react";
+import { Podium } from "./Podium";
 
-interface leaderboard {
+export interface leaderboard {
     id: number;
     breedname: string;
     votes: number;
@@ -32,9 +33,12 @@ export function Leaderboard(): JSX.Element {
         getLeaderboard();
     }, []);
 
-    const leaderboardTableRows = leaderboard.map((row, index) => (
+    const leaderboardCopy = [...leaderboard];
+    const top3 = leaderboardCopy.splice(0, 3);
+
+    const leaderboardTableRows = leaderboardCopy.map((row, index) => (
         <Tr key={index}>
-            <Td>{index + 1}</Td>
+            <Td>{index + 4}</Td>
             <Td>{row.breedname}</Td>
             <Td>{row.votes}</Td>
         </Tr>
@@ -55,6 +59,7 @@ export function Leaderboard(): JSX.Element {
                 >
                     Refresh Leaderboard
                 </Button>
+                {top3.length > 0 && <Podium top3Array={top3} />}
                 <TableContainer>
                     <Table variant="simple">
                         <TableCaption>Leaderboard</TableCaption>
