@@ -14,6 +14,7 @@ import {
     Button,
 } from "@chakra-ui/react";
 import { Podium } from "./Podium";
+import { readableDogBreedName } from "../readableDogBreedName";
 
 export interface BreedInfo {
     id: number;
@@ -39,7 +40,7 @@ export function Leaderboard(): JSX.Element {
     const leaderboardTableRows = top10BreedsCopy.map((row, index) => (
         <Tr key={index}>
             <Td>{index + 4}</Td>
-            <Td>{row.breedname}</Td>
+            <Td>{readableDogBreedName(row.breedname)}</Td>
             <Td>{row.votes}</Td>
         </Tr>
     ));
@@ -55,7 +56,6 @@ export function Leaderboard(): JSX.Element {
                         getTop10Breeds();
                     }}
                     colorScheme="teal"
-                    margin={"2vh"}
                 >
                     Refresh Leaderboard
                 </Button>

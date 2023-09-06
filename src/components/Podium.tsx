@@ -5,6 +5,7 @@ import {
     getSpecificBreedImage,
     getTop3BreedImages,
 } from "../utils/getBreedImages";
+import { readableDogBreedName } from "../readableDogBreedName";
 
 interface PodiumProps {
     top3Breeds: BreedInfo[];
@@ -47,13 +48,12 @@ export function Podium({ top3Breeds }: PodiumProps): JSX.Element {
             </Button>
             <div className="container podium">
                 <div className="podium__item">
+                    <Text as="b">
+                        {readableDogBreedName(top3Breeds[1].breedname)} <br />{" "}
+                        {top3Breeds[1].votes} Votes
+                    </Text>
                     <button onClick={() => getAndStoreSpecificBreedImage(1)}>
-                        <Text as="b">
-                            {top3Breeds[1].breedname} - {top3Breeds[1].votes}{" "}
-                            Votes
-                        </Text>
                         <img
-                            className="breed-image"
                             src={top3BreedImages[1]}
                             alt={top3Breeds[1].breedname}
                         ></img>
@@ -62,7 +62,8 @@ export function Podium({ top3Breeds }: PodiumProps): JSX.Element {
                 </div>
                 <div className="podium__item">
                     <Text as="b">
-                        {top3Breeds[0].breedname} - {top3Breeds[0].votes} Votes
+                        {readableDogBreedName(top3Breeds[0].breedname)} <br />{" "}
+                        {top3Breeds[0].votes} Votes
                     </Text>
                     <button onClick={() => getAndStoreSpecificBreedImage(0)}>
                         <img
@@ -74,7 +75,8 @@ export function Podium({ top3Breeds }: PodiumProps): JSX.Element {
                 </div>
                 <div className="podium__item">
                     <Text as="b">
-                        {top3Breeds[2].breedname} - {top3Breeds[2].votes} Votes
+                        {readableDogBreedName(top3Breeds[2].breedname)} <br />{" "}
+                        {top3Breeds[2].votes} Votes
                     </Text>
                     <button onClick={() => getAndStoreSpecificBreedImage(2)}>
                         <img
