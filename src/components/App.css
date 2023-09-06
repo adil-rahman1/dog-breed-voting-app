@@ -5,6 +5,7 @@ html {
 .container {
     display: flex;
     align-items: flex-end;
+    text-align: center;
 }
 
 .podium__item {
@@ -17,6 +18,7 @@ html {
     align-items: center;
     font-size: 35px;
     color: #fff;
+    margin-top: -10px;
 }
 
 .podium__breed {
@@ -41,6 +43,16 @@ html {
     background: #cd7f32;
     font-size: xxx-large;
 }
+
+
+.container img {
+    width: 15rem;
+    height: 15rem;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: 0;
+
 .voting {
     display: grid;
     grid-template-columns: 2fr 2fr 2fr;
@@ -54,4 +66,5 @@ html {
 .dog-vote-name {
     text-align: center;
     padding: 0.5vw;
+
 }
