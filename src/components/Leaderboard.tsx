@@ -15,28 +15,28 @@ import {
 } from "@chakra-ui/react";
 import { Podium } from "./Podium";
 
-export interface leaderboard {
+export interface BreedInfo {
     id: number;
     breedname: string;
     votes: number;
 }
+
 export function Leaderboard(): JSX.Element {
-    const backend = "https://dog-breed-voting-c7b1.onrender.com";
+    const expressApiUrl = "https://dog-breed-voting-c7b1.onrender.com";
+    const [top10Breeds, setTop10Breeds] = useState<BreedInfo[]>([]);
 
-    const [leaderboard, setLeaderboard] = useState<leaderboard[]>([]);
-
-    const getLeaderboard = async () => {
-        const response = await axios.get(`${backend}/leaderboard`);
-        setLeaderboard(response.data);
+    const getTop10Breeds = async () => {
+        const response = await axios.get(`${expressApiUrl}/leaderboard`);
+        setTop10Breeds(response.data);
     };
     useEffect(() => {
-        getLeaderboard();
+        getTop10Breeds();
     }, []);
 
-    const leaderboardCopy = [...leaderboard];
-    const top3 = leaderboardCopy.splice(0, 3);
+    const top10BreedsCopy = [...top10Breeds];
+    const top3Breeds = top10BreedsCopy.splice(0, 3);
 
-    const leaderboardTableRows = leaderboardCopy.map((row, index) => (
+    const leaderboardTableRows = top10BreedsCopy.map((row, index) => (
         <Tr key={index}>
             <Td>{index + 4}</Td>
             <Td>{row.breedname}</Td>
@@ -52,14 +52,14 @@ export function Leaderboard(): JSX.Element {
                 </Heading>
                 <Button
                     onClick={() => {
-                        getLeaderboard();
+                        getTop10Breeds();
                     }}
                     colorScheme="teal"
                     margin={"2vh"}
                 >
                     Refresh Leaderboard
                 </Button>
-                {top3.length > 0 && <Podium top3Array={top3} />}
+                {top3Breeds.length >= 3 && <Podium top3Breeds={top3Breeds} />}
                 <TableContainer>
                     <Table variant="simple">
                         <TableCaption>Leaderboard</TableCaption>
