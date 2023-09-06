@@ -1,15 +1,16 @@
 export function readableDogBreedName(breedName: string): string {
-    const capitaliseFirstLetter =
+    const capitalisedBreedName =
         breedName.charAt(0).toUpperCase() + breedName.substring(1);
-    if (capitaliseFirstLetter.includes("-")) {
-        const dashIndex = capitaliseFirstLetter.indexOf("-");
-        const capitaliseSecondFirstLetter =
-            capitaliseFirstLetter.substring(0, dashIndex + 1) +
-            capitaliseFirstLetter.charAt(dashIndex + 1).toUpperCase() +
-            capitaliseFirstLetter.substring(dashIndex + 2);
-        const removeDash = capitaliseSecondFirstLetter.replace("-", " ");
-        return removeDash;
+    if (capitalisedBreedName.includes("-")) {
+        const indexOfDash = capitalisedBreedName.indexOf("-");
+        const capitalisedFullBreedName =
+            capitalisedBreedName.substring(0, indexOfDash + 1) +
+            capitalisedBreedName.charAt(indexOfDash + 1).toUpperCase() +
+            capitalisedBreedName.substring(indexOfDash + 2);
+        const capitalisedFullBreedNameWithSpace =
+            capitalisedFullBreedName.replace("-", " ");
+        return capitalisedFullBreedNameWithSpace;
     } else {
-        return capitaliseFirstLetter;
+        return capitalisedBreedName;
     }
 }
