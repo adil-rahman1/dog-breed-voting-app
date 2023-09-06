@@ -9,6 +9,7 @@ function App() {
             <ChakraProvider>
                 <Votes />
                 <Leaderboard />
+                <a href="https://dog.ceo/dog-api/">API Source</a>
             </ChakraProvider>
         </div>
     );

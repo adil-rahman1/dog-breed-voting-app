@@ -41,3 +41,17 @@ html {
     background: #cd7f32;
     font-size: xxx-large;
 }
+.voting {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+    align-items: center;
+    text-align: center;
+}
+.dog-vote-image {
+    width: 20vw;
+    margin: 1vw;
+}
+.dog-vote-name {
+    text-align: center;
+    padding: 0.5vw;
+}
