@@ -1,16 +1,25 @@
 import { Votes } from "./Votes";
 import "./App.css";
 import { Leaderboard } from "./Leaderboard";
-import { ChakraProvider } from "@chakra-ui/react";
+import { Button, Card, Container, useColorMode } from "@chakra-ui/react";
 
 function App() {
+    const { colorMode, toggleColorMode } = useColorMode();
+
     return (
         <div className="App">
-            <ChakraProvider>
-                <Votes />
-                <Leaderboard />
-                <a href="https://dog.ceo/dog-api/">API Source</a>
-            </ChakraProvider>
+            <Container maxW="50vw">
+                <Card>
+                    <header>
+                        <Button onClick={toggleColorMode}>
+                            Toggle {colorMode === "light" ? "Dark" : "Light"}
+                        </Button>
+                    </header>
+                    <Votes />
+                    <Leaderboard />
+                </Card>
+            </Container>
+            <a href="https://dog.ceo/dog-api/">API Source</a>
         </div>
     );
 }
