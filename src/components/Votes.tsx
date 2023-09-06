@@ -2,7 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { extractDogBreedName } from "../extractDogBreedName";
 import { Heading, Container, Text } from "@chakra-ui/react";
+import { useSound } from "use-sound";
 import { readableDogBreedName } from "../readableDogBreedName";
+import sound from "../single-dog-bark-king-charles-spaniel-41366.mp3";
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 interface IBreedsToCompare {
@@ -17,6 +19,8 @@ export function Votes(): JSX.Element {
         breedOneUrl: "",
         breedTwoUrl: "",
     });
+
+    const [play] = useSound(sound, { interrupt: true, volume: 0.5 });
 
     const getAndStoreTwoRandomBreeds = async () => {
         try {
@@ -49,6 +53,7 @@ export function Votes(): JSX.Element {
         try {
             await axios.post(`${baseUrl}/breeds/${breedName}`);
             getAndStoreTwoRandomBreeds();
+            play();
         } catch (error) {
             console.error(error);
         }
