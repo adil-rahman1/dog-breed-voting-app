@@ -44,7 +44,6 @@ html {
     font-size: xxx-large;
 }
 
-
 .container img {
     width: 15rem;
     height: 15rem;
@@ -52,6 +51,7 @@ html {
     display: block;
     margin-left: auto;
     margin-right: 0;
+}
 
 .voting {
     display: grid;
