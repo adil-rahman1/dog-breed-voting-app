@@ -1,7 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { extractDogBreedName } from "../extractDogBreedName";
-import { Heading, Container } from "@chakra-ui/react";
+import { Heading, Container, Text } from "@chakra-ui/react";
+import { useSound } from "use-sound";
+import { readableDogBreedName } from "../readableDogBreedName";
+import sound from "../single-dog-bark-king-charles-spaniel-41366.mp3";
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 interface IBreedsToCompare {
@@ -16,6 +19,8 @@ export function Votes(): JSX.Element {
         breedOneUrl: "",
         breedTwoUrl: "",
     });
+
+    const [play] = useSound(sound, { interrupt: true, volume: 0.5 });
 
     const getAndStoreTwoRandomBreeds = async () => {
         try {
@@ -48,6 +53,7 @@ export function Votes(): JSX.Element {
         try {
             await axios.post(`${baseUrl}/breeds/${breedName}`);
             getAndStoreTwoRandomBreeds();
+            play();
         } catch (error) {
             console.error(error);
         }
@@ -68,9 +74,16 @@ export function Votes(): JSX.Element {
                             src={breedsToCompare.breedOneUrl}
                             alt=""
                         />
-                        <p className="dog-vote-name">
-                            {extractDogBreedName(breedsToCompare.breedOneUrl)}
-                        </p>
+                        <Text className="dog-vote-name" as={"b"}>
+                            {extractDogBreedName(
+                                breedsToCompare.breedOneUrl
+                            ) !== undefined &&
+                                readableDogBreedName(
+                                    extractDogBreedName(
+                                        breedsToCompare.breedOneUrl
+                                    )
+                                )}
+                        </Text>
                     </div>
                     <Heading marginTop={"3vh"} textAlign={"center"}>
                         vs
@@ -83,9 +96,16 @@ export function Votes(): JSX.Element {
                             src={breedsToCompare.breedTwoUrl}
                             alt=""
                         />
-                        <p className="dog-vote-name">
-                            {extractDogBreedName(breedsToCompare.breedTwoUrl)}
-                        </p>
+                        <Text className="dog-vote-name" as={"b"}>
+                            {extractDogBreedName(
+                                breedsToCompare.breedTwoUrl
+                            ) !== undefined &&
+                                readableDogBreedName(
+                                    extractDogBreedName(
+                                        breedsToCompare.breedTwoUrl
+                                    )
+                                )}
+                        </Text>
                     </div>
                 </div>
             </Container>
