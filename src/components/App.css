@@ -10,7 +10,7 @@ html {
 }
 
 .podium__item {
-    width: 200px;
+    width: 25vw;
     margin-right: 5px;
 }
 
@@ -46,8 +46,9 @@ html {
 }
 
 .container img {
-    width: 15rem;
-    height: 15rem;
+    width: 25vw;
+    height: 60vh;
+
     object-fit: cover;
     display: block;
     margin-left: auto;

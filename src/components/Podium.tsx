@@ -8,9 +8,12 @@ import {
 import { readableDogBreedName } from "../readableDogBreedName";
 
 interface PodiumProps {
-    top3Breeds: BreedInfo[];
+    top10Breeds: BreedInfo[];
 }
-export function Podium({ top3Breeds }: PodiumProps): JSX.Element {
+export function Podium({ top10Breeds }: PodiumProps): JSX.Element {
+    const top10BreedsCopy = [...top10Breeds];
+    const top3Breeds = top10BreedsCopy.splice(0, 3);
+
     const [top3BreedImages, setTop3BreedImages] = useState<string[]>([]);
 
     const getAndStoreTop3BreedImages = async () => {
@@ -34,7 +37,7 @@ export function Podium({ top3Breeds }: PodiumProps): JSX.Element {
             getAndStoreTop3BreedImages();
         },
         // eslint-disable-next-line
-        []
+        [top10Breeds]
     );
 
     return (

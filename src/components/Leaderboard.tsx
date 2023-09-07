@@ -59,7 +59,7 @@ export function Leaderboard(): JSX.Element {
                 >
                     Refresh Leaderboard
                 </Button>
-                {top3Breeds.length >= 3 && <Podium top3Breeds={top3Breeds} />}
+                {top3Breeds.length >= 3 && <Podium top10Breeds={top10Breeds} />}
                 <TableContainer>
                     <Table variant="simple">
                         <TableCaption>Leaderboard</TableCaption>
